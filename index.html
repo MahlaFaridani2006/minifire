@@ -23,18 +23,52 @@
         //         });
         // };
 
+// Example HTML content (replace this with your own)
+const myHtml = `
+    <html>
+        <head>
+            <title>My Minified Page</title>
+        </head>
+        <body>
+            <h1>Hello, world!</h1>
+            <!-- More content here -->
+        </body>
+    </html>
+`;
 
-        $.ajax({
-            url: 'https://www.toptal.com/developers/html-minifier/api/raw/',
-            method: 'POST',
-            data: 'text.txt',
-            success: function (response) {
-                console.log(response);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log(errorThrown);
-            }
-        });
+// Make an AJAX POST request to the HTML Minifier API
+function minifyHtml() {
+    const url = 'https://www.toptal.com/developers/html-minifier/api/raw';
+
+    // Create a new XMLHttpRequest object
+    const xhr = new XMLHttpRequest();
+
+    // Configure the request
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/json'); // Set the content type
+
+    // Handle the response
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            const minifiedHtml = xhr.responseText;
+            console.log('Minified HTML:', minifiedHtml);
+        } else {
+            console.error('Error while minifying HTML:', xhr.status, xhr.statusText);
+        }
+    };
+
+    // Handle network errors
+    xhr.onerror = function () {
+        console.error('Network error occurred while making the request.');
+    };
+
+    // Send the request with the HTML content
+    xhr.send(JSON.stringify({  input : '<input type="text" />',}));
+}
+
+// Call the function
+minifyHtml();
+
     </script>
 </body>
 
