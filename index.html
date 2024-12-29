@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <textarea id="primary-data"></textarea>
+    <button>send</button>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+        // function postPrimaryData() {
+        //     const primaryData = $('#primary-data').val();
+        //     $.post("https://www.toptal.com/developers/html-minifier/api/raw",
+        //         primaryData,
+        //         function (data,status) {
+        //             console.log(data,status );
+        //         });
+        // };
+
+
+        $.ajax({
+            url: 'https://www.toptal.com/developers/html-minifier/api/raw/',
+            method: 'POST',
+            data: 'text.txt',
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    </script>
+</body>
+
+</html>
